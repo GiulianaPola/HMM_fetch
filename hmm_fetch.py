@@ -4,7 +4,7 @@ import sys
 import os
 from datetime import datetime
 
-version='1.0.0'
+version='1.0.1'
 
 param=dict()
 hmms=[]
@@ -13,13 +13,13 @@ call=os.path.abspath(os.getcwd())
 
 help = 'hmm_fetch v{} - \n'.format(version)
 help += '(c) 2022. Arthur Gruber & Giuliana Pola\n'
-#help = help + 'For the latest version acess: https://github.com/GiulianaPola/hmm_fetch\n'
+help = help + 'For the latest version acess: https://github.com/GiulianaPola/HMM_fetch\n'
 help += 'Usage: hmm_fetch.py -i <list file> -d <hmm file>\n'
 help += '\nMandatory parameters:\n'
-help += '-i <text file>\tprofile HMM name list\n'
-help += '-d <hmm file>\tprofile HMM dataset\n'
+help += '-i <text file>\tProfile HMM name list\n'
+help += '-d <hmm file>\tProfile HMM dataset\n'
 help += '\nOptional parameters:\n'
-help += '-o <string>\toutput directory name (default: hmm_selected)'
+help += '-o <name>\tOutput directory name (default: hmm_selected)'
 
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument('-i')
@@ -64,7 +64,7 @@ def validate_args(args):
     valid=False
   elif not args.d==None:
     if not os.path.isfile(args.d):
-      print("Profile HMM dataset (-d) not exist!")
+      print("Profile HMM dataset (-d) does not exist!")
       valid=False
     else:
       param["d"]=os.path.realpath(args.d)
@@ -72,7 +72,7 @@ def validate_args(args):
   if valid==True:
     if not args.o==None:
       if os.path.isdir(args.o):
-        print("Output directory (-o) {} exists!".format(args.o))
+        print("Output directory (-o) {} already exist!".format(args.o))
         out=rename(1,args.o,'dir')
         os.mkdir(out)
         print("Creating output directory (-o) {}...".format(out))

@@ -26,10 +26,13 @@ python hmm_fetch.py -i <list file> -d <hmm file> <optional parameters>
 ### Optional parameters:
 
 ```
--o             	  : Output directory (default = hmm_fetch).
+-o <name>        : Output directory (default = hmm_selected).
 ```
 
 ## Contact
 
 To report bugs, to ask for help and to give any feedback, please contact Arthur Gruber (argruber@usp.br) or Giuliana L. Pola (giulianapola@usp.br).
 
+## Versions
+### 1.0.1
+Error message correction ("Profile HMM name list file (-i) does not exist!").
