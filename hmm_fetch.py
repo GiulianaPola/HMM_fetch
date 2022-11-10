@@ -4,7 +4,7 @@ import sys
 import os
 from datetime import datetime
 
-version='1.0.1'
+version='1.0.2'
 
 param=dict()
 hmms=[]
