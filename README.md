@@ -34,5 +34,7 @@ python hmm_fetch.py -i <list file> -d <hmm file> <optional parameters>
 To report bugs, to ask for help and to give any feedback, please contact Arthur Gruber (argruber@usp.br) or Giuliana L. Pola (giulianapola@usp.br).
 
 ## Versions
+### 1.0.2
+Correction when creating output folder.
 ### 1.0.1
 Error message correction ("Profile HMM name list file (-i) does not exist!").

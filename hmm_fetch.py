@@ -70,26 +70,25 @@ def validate_args(args):
       param["d"]=os.path.realpath(args.d)
   
   if valid==True:
-    if not args.o==None:
-      if os.path.isdir(args.o):
-        print("Output directory (-o) {} already exist!".format(args.o))
-        out=rename(1,args.o,'dir')
-        os.mkdir(out)
-        print("Creating output directory (-o) {}...".format(out))
-        param["o"]=out
-      else:
-       try:
-         os.mkdir(args.o)
-         print("Creating output directory (-o) {}...".format(args.o))
-         param["o"]=args.o
-       except:
-         print("Output directory (-o) not valid\n")
-         valid=False
+    if args.o==None:
+      out=os.path.join(call,'hmm_selected')
     else:
-     out=rename(1,'hmm_selected','dir')
-     os.mkdir(out)
-     print("Creating output directory (-o) {}...".format(out))
-     param['o']=out
+      head_tail = os.path.split(args.o)
+      if os.path.exists(head_tail[0]):
+        out=args.o
+      else:
+        out=os.path.join(call,head_tail[1])
+    if os.path.isdir(args.o):
+      print("Output directory '{}' already exist!")
+      out=rename(1,out,'dir')
+    try:
+      os.mkdir(out)
+    except:
+      print("Output directory '{}' couldn't be created!")
+      valid=False
+    else:
+      print("Creating output directory '{}'...")
+      param['o']=out
 
   return valid,param
 
