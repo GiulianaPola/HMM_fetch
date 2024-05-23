@@ -4,7 +4,7 @@ import sys
 import os
 from datetime import datetime
 
-version='1.0.2'
+version='1.0.3'
 
 param=dict()
 hmms=[]
@@ -13,7 +13,7 @@ call=os.path.abspath(os.getcwd())
 
 help = 'hmm_fetch v{} - \n'.format(version)
 help += '(c) 2022. Arthur Gruber & Giuliana Pola\n'
-help = help + 'For the latest version acess: https://github.com/GiulianaPola/HMM_fetch\n'
+help = help + 'For more information access https://github.com/GiulianaPola/HMM_fetch\n'
 help += 'Usage: hmm_fetch.py -i <list file> -d <hmm file>\n'
 help += '\nMandatory parameters:\n'
 help += '-i <text file>\tProfile HMM name list\n'
@@ -79,15 +79,15 @@ def validate_args(args):
       else:
         out=os.path.join(call,head_tail[1])
     if os.path.isdir(args.o):
-      print("Output directory '{}' already exist!")
+      print("Output directory '{}' already exist!".format(out))
       out=rename(1,out,'dir')
     try:
       os.mkdir(out)
     except:
-      print("Output directory '{}' couldn't be created!")
+      print("Output directory '{}' couldn't be created!".format(out))
       valid=False
     else:
-      print("Creating output directory '{}'...")
+      print("Creating output directory '{}'...".format(out))
       param['o']=out
 
   return valid,param
@@ -117,8 +117,8 @@ def validate_list(i):
         namelist=itext.split(',')
       elif ' ' in itext:
         namelist=itext.split(' ')
-
-  namelist.remove('')
+      while '' in namelist:
+        namelist.remove('')
   return valid,sorted(namelist)
   
 def validate_database(d):
@@ -151,14 +151,14 @@ else:
   if valid==True:
     print("Valid arguments!")
     try:
-      log=open(os.path.join(param["o"], 'file.log'),'w')
-      log.write('hmm_fetch v{}\n'.format(version))
-      log.write('\nWorking directory:\n{}\n'.format(call))
-      log.write('\nCommand line:\n{}\n'.format(' '.join(sys.argv)))
-      log.write('\nParameters:\n{}\n'.format(str(param)))
-      log.write('\nDataset analysis:')
+      flog=open(os.path.join(param["o"], 'file.flog'),'w')
+      flog.write('hmm_fetch v{}\n'.format(version))
+      flog.write('\nWorking directory:\n{}\n'.format(call))
+      flog.write('\nCommand line:\n{}\n'.format(' '.join(sys.argv)))
+      flog.write('\nParameters:\n{}\n'.format(str(param)))
+      flog.write('\nDataset analysis:\n')
     except:
-      print('Log file was not created!')
+      print('flog file was not created!')
     else:  
       valid,namelist=validate_list(param['i'])
       if valid==True:
@@ -177,26 +177,30 @@ else:
               hmms.append(hmm)
               with open(os.path.join(param['o'], '{}.hmm'.format(name)),'w') as hmmfile:
                 hmmfile.write(hmm)
+          if not selected==[]:
+            flog.write("Selected HMMs: {}\n".format(selected))
+          if not missing==[]:
+            flog.write("Missing HMMs: {}\n".format(missing))
           execution=datetime.now() - start_time
           print("\nExecution time: {}".format(execution))
-          log.write("\nExecution time: {}".format(execution))
+          flog.write("\nExecution time: {}".format(execution))
           print("Number of selected files: {}".format(len(selected)))
-          log.write("\nNumber of selected files: {}".format(len(selected)))
+          flog.write("\nNumber of selected files: {}".format(len(selected)))
           if selected==[]:
             print("All selected HMMs are missing!")
-            log.write("\nAll selected HMMs are missing!\n")
+            flog.write("\nAll selected HMMs are missing!\n")
           else:
             with open(os.path.join(param['o'], 'selected.hmm'),'w') as selectedfile:
               selectedfile.write('\n'.join(hmms))
             if missing==[]:
               print("All selected HMMs were saved!")
-              log.write("\nAll selected HMMs were saved!\n")
+              flog.write("\nAll selected HMMs were saved!\n")
             else:
               print("Missing HMMs:\t{}\n".format(missing.join(',')))
-              log.write("\nMissing HMMs:\t{}\n".format(missing.join(',')))
+              flog.write("\nMissing HMMs:\t{}\n".format(missing.join(',')))
               print("Selected HMMs:\t{}\n".format(selected.join(',')))
-              log.write("Selected HMMs:\t{}\n".format(selected.join(',')))
+              flog.write("Selected HMMs:\t{}\n".format(selected.join(',')))
             print("Execution time per file: {}".format(execution/len(selected)))
-            log.write("Execution time per file: {}".format(execution/len(selected)))
-      log.close()
-            
+            flog.write("Execution time per file: {}".format(execution/len(selected)))
+      flog.close()
+print("Done.")      

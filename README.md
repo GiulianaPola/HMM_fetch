@@ -4,7 +4,7 @@ HMM-fetch is a Python script that uses a list of names of HMMs and a file of con
 
 ## Instalation
 
-HMM-Prospector also does not need to be installed. The user should only download the hmm-prospector.py file.
+HMM-fetch also does not need to be installed. The user should only download the hmm_fetch.py file.
 
 ## Requirements
 
