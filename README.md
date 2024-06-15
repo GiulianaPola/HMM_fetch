@@ -24,9 +24,6 @@ hmm_fetch.py is a command-line tool designed to fetch Profile Hidden Markov Mode
 **Optional Parameters:**
 - `-o <output directory>`: Output directory name (default: hmm_selected).
 
-**Tutorial:**
-For a comprehensive tutorial on using hmm_fetch.py, refer to the manual provided with the tool. The manual offers detailed guidance on running the script effectively.
-
 **Reference:**
 For academic references related to hmm_fetch.py, please visit https://github.com/GiulianaPola/HMM_fetch for more information on citing the tool in your publications.
 
