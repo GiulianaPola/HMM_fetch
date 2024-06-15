@@ -1,40 +1,34 @@
 # HMM-fetch: A tool to select profile HMMs from a database
 
-HMM-fetch is a Python script that uses a list of names of HMMs and a file of concatenated profile HMMs. From the names of the profile HMMs in the list, HMM-fetch searches the profile HMM database and saves the selected profile HMM to a file with its name. Finally the program creates a log file that describes its execution and creates a concatenated file of the selected profile HMMs.
+**Introduction:**
+hmm_fetch.py is a command-line tool designed to fetch Profile Hidden Markov Models (HMMs) from a dataset based on a list of HMM names. This README provides detailed instructions on the installation, requirements, and usage of hmm_fetch.py.
 
-## Instalation
+**Installation:**
+- There is no traditional installation process for hmm_fetch.py. Simply download the script and ensure you have the necessary dependencies.
 
-HMM-fetch also does not need to be installed. The user should only download the hmm_fetch.py file.
+**Requirements:**
+- Python 3
+- Standard Python libraries
+- Operating system compatible with Python 3
 
-## Requirements
+**Usage:**
+- Command Line Syntax: `python hmm_fetch.py -i <list file> -d <hmm file> [-o <output directory>]`
+- Replace `<list file>` with the path to the file containing the list of HMM names.
+- Replace `<hmm file>` with the path to the Profile HMM dataset.
+- Optional: Use `-o <output directory>` to specify the output directory name.
 
-- 
+**Mandatory Parameters:**
+- `-i <list file>`: Profile HMM name list file.
+- `-d <hmm file>`: Profile HMM dataset file.
 
-## Usage
+**Optional Parameters:**
+- `-o <output directory>`: Output directory name (default: hmm_selected).
 
-```
-python hmm_fetch.py -i <list file> -d <hmm file> <optional parameters>
-```  
+**Tutorial:**
+For a comprehensive tutorial on using hmm_fetch.py, refer to the manual provided with the tool. The manual offers detailed guidance on running the script effectively.
 
-### Mandatory parameters:
+**Reference:**
+For academic references related to hmm_fetch.py, please visit https://github.com/GiulianaPola/HMM_fetch for more information on citing the tool in your publications.
 
-```
--i  <text file>        : Profile HMM namelist
--d  <hmm concated file>        : Profile HMM dataset
-```
-
-### Optional parameters:
-
-```
--o <name>        : Output directory (default = hmm_selected).
-```
-
-## Contact
-
-To report bugs, to ask for help and to give any feedback, please contact Arthur Gruber (argruber@usp.br) or Giuliana L. Pola (giulianapola@usp.br).
-
-## Versions
-### 1.0.2
-Correction when creating output folder.
-### 1.0.1
-Error message correction ("Profile HMM name list file (-i) does not exist!").
+**Contact:**
+To report bugs, to ask for help and to give any feedback, please contact Arthur Gruber (argruber@usp.br) or Giuliana Pola (giulianapola@usp.br)
